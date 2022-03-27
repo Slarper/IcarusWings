@@ -1,13 +1,7 @@
 package com.github.slarper;
 
-import com.github.slarper.common.ModItems;
+import com.github.slarper.common.item.RegistryItems;
 import net.fabricmc.api.ModInitializer;
-import net.minecraft.item.ElytraItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.Items;
-import net.minecraft.util.Rarity;
-import net.minecraft.util.registry.Registry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,9 +11,11 @@ public class IcarusWingsMain implements ModInitializer {
 	// That way, it's clear which mod wrote info, warnings, and errors.
 	public static final Logger LOGGER = LoggerFactory.getLogger(IcarusWingsMain.MODID);
 
-	public static final ModItems MODITEMS = new ModItems();
 
 	public static final String MODID = "icarus_wings";
+
+	public static final RegistryItems registryItems = new RegistryItems();
+
 
 	@Override
 	public void onInitialize() {
