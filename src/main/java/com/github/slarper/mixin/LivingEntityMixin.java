@@ -16,7 +16,8 @@ public class LivingEntityMixin {
     @Inject(method = "getPreferredEquipmentSlot",at = @At(value = "HEAD"),cancellable = true)
     private static void getPreferredEquipmentSlot0(ItemStack stack, CallbackInfoReturnable<EquipmentSlot> cir){
         if (stack.isOf(ICARUS_WINGS)){
-            cir.setReturnValue(EquipmentSlot.CHEST);
+            cir.setReturnValue(EquipmentSlot.LEGS);
         }
+        cir.cancel();
     }
 }
