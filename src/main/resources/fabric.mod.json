@@ -1,35 +1,35 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "icarus_wings",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "Icarus Wings",
+  "description": "Add an equip Icarus Wings",
   "authors": [
-    "Me!"
+    "Slarper"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://github.com/Slarper",
+    "sources": "https://github.com/Slarper/IcarusWings"
   },
 
   "license": "CC0-1.0",
-  "icon": "assets/modid/icon.png",
+  "icon": "assets/icarus_wings/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.example.ExampleMod"
+      "com.github.slarper.IcarusWingsMain"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "icarus_wings.mixins.json"
   ],
 
   "depends": {
     "fabricloader": ">=0.13.3",
     "fabric": "*",
-    "minecraft": "1.18.x",
+    "minecraft": "1.18.1",
     "java": ">=17"
   },
   "suggests": {
