@@ -9,11 +9,13 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import static com.github.slarper.common.item.RegistryItems.ICARUS_WINGS;
+
 @Mixin(LivingEntity.class)
 public class LivingEntityMixin {
     @Inject(method = "getPreferredEquipmentSlot",at = @At(value = "HEAD"),cancellable = true)
     private static void getPreferredEquipmentSlot0(ItemStack stack, CallbackInfoReturnable<EquipmentSlot> cir){
-        if (stack.getItem() instanceof FabricElytraItem){
+        if (stack.isOf(ICARUS_WINGS)){
             cir.setReturnValue(EquipmentSlot.CHEST);
         }
     }
