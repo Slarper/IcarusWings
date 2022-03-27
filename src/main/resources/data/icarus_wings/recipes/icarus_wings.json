@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+      "FHF",
+      "FHF",
+      "FHF"
+    ],
+    "key": {
+      "F": {
+        "item": "minecraft:feather"
+      },
+      "H": {
+        "item": "minecraft:honeycomb"
+      }
+    },
+    "result": {
+      "item": "icarus_wings:icarus_wings",
+      "count": 1
+    }
+  }
