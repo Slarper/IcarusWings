@@ -1,9 +1,11 @@
-# Fabric Example Mod
+# Icarus Wings
 
-## Setup
+## Background
 
-For setup instructions please see the [fabric wiki page](https://fabricmc.net/wiki/tutorial:setup) that relates to the IDE that you are using.
+I want to fly in Eden Ring world ([Eden Ring is a fabric mod](https://github.com/paulevsGitch/EdenRing)) but the Elytra is too rare.
 
-## License
+So I would like to add an equip which has the same funtionality.
 
-This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
+I take inspiration from ancient Greek mythology,
+
+in my imagination, that is a wing crafting by Feather and Honeycomb.
