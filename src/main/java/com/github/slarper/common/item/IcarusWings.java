@@ -2,8 +2,10 @@ package com.github.slarper.common.item;
 
 import net.fabricmc.fabric.api.entity.event.v1.FabricElytraItem;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ElytraItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Wearable;
@@ -11,6 +13,7 @@ import net.minecraft.stat.Stats;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
+import net.minecraft.world.event.GameEvent;
 
 public class IcarusWings extends Item implements FabricElytraItem {
 
@@ -35,5 +38,16 @@ public class IcarusWings extends Item implements FabricElytraItem {
         }
     }
 
+    @Override
+    public boolean useCustomElytra(LivingEntity entity, ItemStack chestStack, boolean tickElytra) {
+        if (chestStack.getDamage() < chestStack.getMaxDamage()) {
+            if (tickElytra) {
+                doVanillaElytraTick(entity, chestStack);
+            }
 
+            return true;
+        }
+
+        return false;
+    }
 }
