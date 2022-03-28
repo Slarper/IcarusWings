@@ -7,6 +7,7 @@ import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.stat.Stats;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
@@ -83,6 +84,12 @@ public class IcarusWings extends Item implements FabricElytraItem {
             entity.emitGameEvent(GameEvent.ELYTRA_FREE_FALL);
         }
     }
+
+    @Override
+    public boolean canRepair(ItemStack stack, ItemStack ingredient) {
+        return ingredient.isOf(Items.FEATHER);
+    }
+
 
     public int getSunLevel(long timeOfDay){
         if (timeOfDay >= 1000 && timeOfDay < 6000) {
