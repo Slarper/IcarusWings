@@ -10,8 +10,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.stat.Stats;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.LightType;
+import net.minecraft.world.MutableWorldProperties;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldProperties;
+import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.event.GameEvent;
 
 public class IcarusWings extends Item implements FabricElytraItem {
@@ -20,6 +24,7 @@ public class IcarusWings extends Item implements FabricElytraItem {
         super(settings);
     }
 
+    @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack itemStack = user.getStackInHand(hand);
         EquipmentSlot equipmentSlot = MobEntity.getPreferredEquipmentSlot(itemStack);
@@ -38,34 +43,41 @@ public class IcarusWings extends Item implements FabricElytraItem {
     }
 
     @Override
-    public boolean useCustomElytra(LivingEntity entity, ItemStack chestStack, boolean tickElytra) {
-        if (chestStack.getDamage() < chestStack.getMaxDamage()) {
-            if (tickElytra) {
-                doVanillaElytraTick(entity, chestStack);
-            }
-
-            return true;
-        }
-
-        return false;
-    }
-
-    @Override
     public void doVanillaElytraTick(LivingEntity entity, ItemStack chestStack) {
         int nextRoll = entity.getRoll() + 1;
 
         if (!entity.world.isClient && nextRoll % 10 == 0) {
             if ((nextRoll / 10) % 2 == 0) {
+
                 int damageAmount;
 
-                World world = entity.getWorld();
-                long timeOfDay = world.getTimeOfDay();
-                int sunLevel = getSunLevel(timeOfDay);
-                int skyLight = world.getLightLevel(LightType.SKY, entity.getBlockPos());
+                int remainDamage = chestStack.getMaxDamage() - chestStack.getDamage();
 
-                damageAmount = 1 + getMeltLevel(sunLevel, skyLight);
+
+                World world = entity.getWorld();
+                RegistryKey<World> registryKey = world.getRegistryKey();
+
+                if (registryKey == World.OVERWORLD){
+
+                    WorldProperties worldProperties = world.getLevelProperties();
+                    if (worldProperties.isRaining() || worldProperties.isThundering()){
+                        damageAmount = 1;
+                    } else {
+                        long timeOfDay = world.getTimeOfDay();
+                        int sunLevel = getSunLevel(timeOfDay);
+                        int skyLight = world.getLightLevel(LightType.SKY, entity.getBlockPos());
+                        int meltLevel = getMeltLevel(sunLevel, skyLight);
+
+                        damageAmount = Integer.min(remainDamage - 1,1 + meltLevel / 3);
+                    }
+                } else if (registryKey == World.NETHER) {
+                    damageAmount = Integer.min(remainDamage - 1, 10);
+                } else {
+                    damageAmount = 1;
+                }
 
                 chestStack.damage(damageAmount, entity, p -> p.sendEquipmentBreakStatus(EquipmentSlot.CHEST));
+
             }
 
             entity.emitGameEvent(GameEvent.ELYTRA_FREE_FALL);
@@ -83,6 +95,8 @@ public class IcarusWings extends Item implements FabricElytraItem {
     }
 
     public int getMeltLevel(int sunLevel, int skyLight){
-        return sunLevel * skyLight / 15 / 3;
+        return sunLevel * skyLight / 15;
     }
+
+
 }
