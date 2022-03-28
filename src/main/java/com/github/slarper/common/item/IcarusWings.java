@@ -91,7 +91,7 @@ public class IcarusWings extends Item implements FabricElytraItem {
     }
 
 
-    public int getSunLevel(long timeOfDay){
+    public static int getSunLevel(long timeOfDay){
         if (timeOfDay >= 1000 && timeOfDay < 6000) {
             return (int) (timeOfDay * 15 / 5000);
         } else if ( timeOfDay>=6000 && timeOfDay < 11000){
@@ -101,7 +101,7 @@ public class IcarusWings extends Item implements FabricElytraItem {
         }
     }
 
-    public int getMeltLevel(int sunLevel, int skyLight){
+    public static int getMeltLevel(int sunLevel, int skyLight){
         return sunLevel * skyLight / 15;
     }
 
