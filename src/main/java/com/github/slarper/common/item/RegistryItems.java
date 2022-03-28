@@ -8,6 +8,8 @@ import net.minecraft.util.registry.Registry;
 
 public class RegistryItems {
 
+    public static void load(){}
+
     public static final Item ICARUS_WINGS;
 
     private static Item register(String id, Item item){

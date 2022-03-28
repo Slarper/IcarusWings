@@ -14,8 +14,6 @@ public class IcarusWingsMain implements ModInitializer {
 
 	public static final String MODID = "icarus_wings";
 
-	public static final RegistryItems registryItems = new RegistryItems();
-
 
 	@Override
 	public void onInitialize() {
@@ -24,5 +22,7 @@ public class IcarusWingsMain implements ModInitializer {
 		// Proceed with mild caution.
 
 		LOGGER.info("Hello Fabric world!");
+
+		RegistryItems.load();
 	}
 }
