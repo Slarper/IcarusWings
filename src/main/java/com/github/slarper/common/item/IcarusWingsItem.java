@@ -5,6 +5,7 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ElytraItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -13,16 +14,31 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.LightType;
-import net.minecraft.world.MutableWorldProperties;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProperties;
-import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.event.GameEvent;
 
-public class IcarusWings extends Item implements FabricElytraItem {
+public class IcarusWingsItem extends Item implements FabricElytraItem {
 
-    public IcarusWings(Settings settings) {
+    public IcarusWingsItem(Settings settings) {
         super(settings);
+    }
+
+    public static boolean isUsable(ItemStack stack) {
+        return stack.hasEnchantments() ? stack.getDamage() < stack.getMaxDamage() - 1 : stack.getDamage() < stack.getMaxDamage();
+    }
+
+    @Override
+    public boolean useCustomElytra(LivingEntity entity, ItemStack chestStack, boolean tickElytra) {
+        if (IcarusWingsItem.isUsable(chestStack)) {
+            if (tickElytra) {
+                doVanillaElytraTick(entity, chestStack);
+            }
+
+            return true;
+        }
+
+        return false;
     }
 
     @Override
@@ -69,10 +85,21 @@ public class IcarusWings extends Item implements FabricElytraItem {
                         int skyLight = world.getLightLevel(LightType.SKY, entity.getBlockPos());
                         int meltLevel = getMeltLevel(sunLevel, skyLight);
 
-                        damageAmount = Integer.min(remainDamage - 1,1 + meltLevel / 3);
+                        if (chestStack.hasEnchantments()){
+                            damageAmount = Integer.min(remainDamage - 1,1 + meltLevel / 3);
+                        } else {
+                            damageAmount = 1 + meltLevel / 3;
+                        }
+
                     }
                 } else if (registryKey == World.NETHER) {
-                    damageAmount = Integer.min(remainDamage - 1, 10);
+
+                    if (chestStack.hasEnchantments()){
+                        damageAmount = Integer.min(remainDamage - 1,10);
+                    } else {
+                        damageAmount = 10;
+                    }
+
                 } else {
                     damageAmount = 1;
                 }

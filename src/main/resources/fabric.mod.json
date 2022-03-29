@@ -19,7 +19,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.github.slarper.IcarusWingsMain"
+      "com.github.slarper.IcarusWings"
     ]
   },
   "mixins": [
