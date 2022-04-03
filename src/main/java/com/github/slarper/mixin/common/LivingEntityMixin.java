@@ -1,4 +1,4 @@
-package com.github.slarper.mixin;
+package com.github.slarper.mixin.common;
 
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import static com.github.slarper.common.item.RegistryItems.ICARUS_WINGS;
+import static com.github.slarper.item.RegisterItems.ICARUS_WINGS;
 
 @Mixin(LivingEntity.class)
 public class LivingEntityMixin {

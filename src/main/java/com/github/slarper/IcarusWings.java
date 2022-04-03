@@ -1,6 +1,6 @@
 package com.github.slarper;
 
-import com.github.slarper.common.item.RegistryItems;
+import com.github.slarper.item.RegisterItems;
 import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +23,6 @@ public class IcarusWings implements ModInitializer {
 
 		LOGGER.info("Hello Fabric world!");
 
-		RegistryItems.load();
+		RegisterItems.load();
 	}
 }

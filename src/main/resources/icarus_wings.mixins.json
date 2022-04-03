@@ -4,10 +4,10 @@
   "package": "com.github.slarper.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "LivingEntityMixin"
+    "common.LivingEntityMixin"
   ],
   "client": [
-
+    "client.PlayerEntityRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

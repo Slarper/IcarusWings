@@ -1,11 +1,11 @@
-package com.github.slarper.common.item;
+package com.github.slarper.item;
 
 import com.github.slarper.IcarusWings;
 import net.minecraft.item.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
-public class RegistryItems {
+public class RegisterItems {
 
     public static void load(){}
 
