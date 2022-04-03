@@ -6,7 +6,7 @@
 
 I want to fly in Eden Ring world ([Eden Ring is a fabric mod](https://github.com/paulevsGitch/EdenRing)) but the Elytra is too rare.
 
-So I would like to add an equip which has the same funtionality.
+So I would like to add an equip which has the same functionality.
 
 I take inspiration from ancient Greek mythology, *Wings of Icarus*.
 
