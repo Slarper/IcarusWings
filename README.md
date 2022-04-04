@@ -11,3 +11,7 @@ So I would like to add an equip which has the same functionality.
 I take inspiration from ancient Greek mythology, *Wings of Icarus*.
 
 In my imagination, that is a wing crafting by Feather and Honeycomb.
+
+## Future
+
+The mod will long-time update. And all the temporary textures will be repainted.
